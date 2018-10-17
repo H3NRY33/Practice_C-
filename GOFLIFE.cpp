@@ -59,6 +59,7 @@ void addtoSmall(string inp,vector<bool>& small2){//takes a string and a vector t
 
 void readFile(const string readFile,vector<vector<bool> > &big)//Takes a string, and a vector of vectors
 {
+  big.clear();
   vector<bool> small;
   string Rinp;
   ifstream myfile(readFile);// creates and object called myfile with the file path
@@ -112,7 +113,24 @@ void lifeLogic(vector<vector<bool> > &world)//Applies logic
     }
 }
 
-void outFile(const string fname,vector<vector<bool> > vec){//Takes a string(Most likely file location) and a vector of vectors
+void boltoChar(vector<vector<bool> > mainVc,vector<vector<char> > &mainVc2){
+vector<char> vSmall;
+mainVc2.clear();
+  for (size_t i = 0 ; i<mainVc.size(); i++){
+    for (size_t j = 0; j < mainVc[0].size();j++){
+      if (mainVc[i][j] == true){
+        vSmall.push_back('O');
+        }
+      if(mainVc[i][j] == false){
+        vSmall.push_back('.');
+        }
+      }
+    mainVc2.push_back(vSmall);
+    vSmall.clear();
+    }
+  }
+
+void outFile(const string fname,vector<vector<char> > vec){//Takes a string(Most likely file location) and a vector of vectors
     ofstream myfile;//Creates object myfile to be written
     myfile.open(fname);//Opens fname, which would be the file path
     for (size_t i=0; i<vec.size(); i++){
@@ -127,6 +145,7 @@ void outFile(const string fname,vector<vector<bool> > vec){//Takes a string(Most
 int main(int argc, char *argv[])
 {
     vector<vector<bool> > mainVec;
+    vector<vector<char> > mainVec2;
     static struct option long_opts[] = {
         {"seed",    required_argument, 0, 's'},
         {"world",   required_argument, 0, 'w'},
@@ -158,11 +177,13 @@ int main(int argc, char *argv[])
 if (inFile != "/file/path/to/be/read"){
     readFile(inFile, mainVec);
 
-if ((ofile != "/file/path/to/be/written") && (ofile != "-")){
+if ((ofile != "/file/path/to/be/written") && (ofile != "-")&&(max_gen == 0)){
     while (true){
         lifeLogic(mainVec);
+        boltoChar(mainVec,mainVec2);
         sleep(1);
-        outFile(ofile,mainVec);
+        outFile(ofile,mainVec2);
+
             }
 }
 if ((ofile == "/file/path/to/be/written") && (ofile != "-")){
@@ -173,10 +194,11 @@ if ((ofile == "/file/path/to/be/written") && (ofile != "-")){
 if (ofile == "-"){
     for(size_t i = 0 ; i < max_gen ; i++){
         lifeLogic(mainVec);
+        boltoChar(mainVec,mainVec2);
                 }
-    for(size_t j = 0 ; j < mainVec.size(); j++){
-        for(size_t k = 0 ; k < mainVec[j].size() ; k++){
-            cout << mainVec[j][k];
+    for(size_t j = 0 ; j < mainVec2.size(); j++){
+        for(size_t k = 0 ; k < mainVec2[j].size() ; k++){
+            cout << mainVec2[j][k];
                     }
         cout<<"\n";
         }
@@ -187,18 +209,24 @@ if(inFile == "/file/path/to/be/read"){
     cin >> inFile;
     readFile(inFile, mainVec);
 if ((ofile != "/file/path/to/be/written") && (ofile != "-")){
+
     for(size_t i = 0 ; i < max_gen ; i++){
+
         lifeLogic(mainVec);
+        boltoChar(mainVec,mainVec2);
                 }
-    outFile(ofile,mainVec);
+    outFile(ofile,mainVec2);
 }
 if ((ofile == "/file/path/to/be/written") && (ofile != "-")){
+
     for(size_t i = 0 ; i < max_gen ; i++){
+        mainVec2.clear();
         lifeLogic(mainVec);
+        boltoChar(mainVec,mainVec2);
         }
-     for(size_t j = 0 ; j < mainVec.size(); j++){
-        for(size_t k = 0 ; k < mainVec[j].size() ; k++){
-            cout << mainVec[j][k];
+     for(size_t j = 0 ; j < mainVec2.size(); j++){
+        for(size_t k = 0 ; k < mainVec2[j].size() ; k++){
+            cout << mainVec2[j][k];
                     }
         cout<<"\n";
     }
@@ -208,10 +236,11 @@ if ((ofile == "/file/path/to/be/written") && (ofile != "-")){
 if (ofile == "-"){
     for(size_t i = 0 ; i < max_gen ; i++){
         lifeLogic(mainVec);
+        boltoChar(mainVec,mainVec2);
         }
-     for(size_t j = 0 ; j < mainVec.size(); j++){
-        for(size_t k = 0 ; k < mainVec[j].size() ; k++){
-            cout << mainVec[j][k];
+     for(size_t j = 0 ; j < mainVec2.size(); j++){
+        for(size_t k = 0 ; k < mainVec2[j].size() ; k++){
+            cout << mainVec2[j][k];
                     }
         cout<<"\n";
     }
@@ -227,16 +256,18 @@ readFile(inFile, mainVec);
 if ((ofile != "/file/path/to/be/written") && (ofile != "-")){
     for(size_t i = 0 ; i < max_gen ; i++){
         lifeLogic(mainVec);
+        boltoChar(mainVec,mainVec2);
         }
-    outFile(ofile,mainVec);
+    outFile(ofile,mainVec2);
 }
 if ((ofile == "/file/path/to/be/written") && (ofile != "-")){
 for(size_t i = 0 ; i < max_gen ; i++){
         lifeLogic(mainVec);
+        boltoChar(mainVec,mainVec2);
         }
-     for(size_t j = 0 ; j < mainVec.size(); j++){
-        for(size_t k = 0 ; k < mainVec[j].size() ; k++){
-            cout << mainVec[j][k];
+     for(size_t j = 0 ; j < mainVec2.size(); j++){
+        for(size_t k = 0 ; k < mainVec2[j].size() ; k++){
+            cout << mainVec2[j][k];
                     }
         cout<<"\n";
     }
@@ -245,10 +276,11 @@ for(size_t i = 0 ; i < max_gen ; i++){
 if (ofile == "-"){
 for(size_t i = 0 ; i < max_gen ; i++){
         lifeLogic(mainVec);
+        boltoChar(mainVec,mainVec2);
         }
-     for(size_t j = 0 ; j < mainVec.size(); j++){
-        for(size_t k = 0 ; k < mainVec[j].size() ; k++){
-            cout << mainVec[j][k];
+     for(size_t j = 0 ; j < mainVec2.size(); j++){
+        for(size_t k = 0 ; k < mainVec2[j].size() ; k++){
+            cout << mainVec2[j][k];
                     }
         cout<<"\n";
     }//DOUBLE FOR LOOP TO PRINT
