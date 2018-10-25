@@ -1,26 +1,9 @@
 /*
- * CSc103 Project 3: Game of Life
- * See readme.html for details.
- * Please list all references you made use of in order to complete the
- * assignment: your classmates, websites, etc.  Aside from the lecture notes
- * and the book, please list everything.  And remember- citing a source does
- * NOT mean it is okay to COPY THAT SOURCE.  What you submit here **MUST BE
- * YOUR OWN WORK**.
- * References:
- http://www.cplusplus.com/doc/tutorial/files/
- https://www-cs.ccny.cuny.edu/~wes/CSC103/gdb.html
- https://www.geeksforgeeks.org/2d-vector-in-cpp-with-user-defined-size/
- https://www.geeksforgeeks.org/ways-copy-vector-c/
- https://syntaxdb.com/ref/cpp/vectors
- http://www.cplusplus.com/forum/beginner/231421/
- https://en.wikibooks.org/wiki/C%2B%2B_Programming/Code/IO#fstream
- Classmates from csc103
- My family and friends
- God
+
  *
  *
  * Finally, please indicate approximately how many hours you spent on this:
- * #hours:~35 hrs
+ * #hours:~over 9000 hrs
  */
 
 #include <vector>
