@@ -5,7 +5,7 @@
 #include  <cstdio>
 using namespace std;
 /* Make a program that converts binary to decimal, octal , hex , etc...
-Practice Program for CSC 21200
+Practice Program for CSC 21100
 S: 8/30/18 
 E: 9/20/18
 */ 
