@@ -3,6 +3,8 @@
 #include <fstream>
 #include <string>
 using namespace std; 
+/* Few functions that reads text files and adds new information to them... WOP 
+B: 10/25/18 */
 
 void addtoSmall(string inp,vector<char>& small2){//takes a string and a vector to change said vector such that every char in the string is now an element of the vector UPDATE: Should now CONVERT files with '.' and '0' INTO BOOLEAN when pushing back.
     for (size_t i=0; i<=inp.length(); i++){
