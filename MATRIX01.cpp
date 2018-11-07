@@ -3,7 +3,10 @@
 #include<string> 
 using namespace std;
 
-/*Create a list of functions that follow's Zero-on matrices slide from Lecture 11 CSC10400*/
+/*Create a list of functions that follow's Zero-on matrices slide from Lecture 11 CSC10400
+  S: 11/07/18
+  E: ........
+*/
 
 void feedtoVec(string uinput,vector<vector<char> > &vecFeed,int &Vmin,int &maX,int &maY){
 	vecFeed.clear(); //Clears the vector to remove anything interfering
