@@ -6,9 +6,6 @@ using namespace std;
 /*S: 11/08/18
   E: 11/08/18 */
 
-
-
-
 //Function that creates a vector of ints with contents of i value.
 void createAxis(const int length, vector<int> &V){
 	for (int i = 0 ; i <=length ; i++){
@@ -77,8 +74,7 @@ void printMatrix(const vector<vector<bool> > Pmatrix){
 		}
 		else{
 		cout<<"-  ";
-		}
-		
+		}	
 	}
 	//Prints out Y axis.
 	cout<<"\n";
@@ -96,9 +92,6 @@ void printMatrix(const vector<vector<bool> > Pmatrix){
 		cout<<"\n\n";
 	}
 } //END print matrix
-
-
-
 
 int main(int argc, char const *argv[])
 {
