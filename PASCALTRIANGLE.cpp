@@ -7,12 +7,13 @@ using namespace std;
 void printVec(const vector<vector<size_t> > Pmatrix){
 	
 	for (size_t i = 0 ; i <Pmatrix.size(); i++){
-	    for(size_t k = 0 ; k <=(Pmatrix.size()-2)-i ; k++){
-			cout<<" ";
+	    for(size_t k = 0 ; k < Pmatrix.size()-i ; k++){
+			cout<<"    ";
 			}
+		
 		for (size_t j = 0 ; j < Pmatrix[i].size();j++){
 		    
-			cout<<Pmatrix[i][j]<<" ";
+			cout<<Pmatrix[i][j]<<"      ";
 		}
 		cout<<"\n";
 	}
