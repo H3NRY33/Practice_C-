@@ -8,7 +8,7 @@ using namespace std;
 
 //Function that creates a vector of ints with contents of i value.
 void createAxis(const int length, vector<int> &V){
-	for (int i = 0 ; i <=length ; i++){
+	for (int i = 0 ; i <length ; i++){
 		V.push_back(i);
 	}
 }//END createAxis
@@ -17,11 +17,11 @@ void createAxis(const int length, vector<int> &V){
 void createMatrix(const int X, const int Y , vector<vector<bool> > &matrix){
 	//Creates a Row of bools of length X.
 	vector<bool> Row;
-	for (int i = 0 ; i <= X ; i++){
+	for (int i = 0 ; i < X ; i++){
 		Row.push_back(false);
 	}
 	//Pushes the Row Vectos Y amount of times.
-	for (int j = 0 ; j <= Y ;j++){
+	for (int j = 0 ; j < Y ;j++){
 		matrix.push_back(Row);
 	}
 }//END createMatrix
@@ -41,11 +41,11 @@ vector<int> compareVec;
 	for (int i = 0 ; i < plotV.size() ; i+=2){
 	feedtoVec(i,plotV,compareVec);
 		//Iterates through Y axis points.
-		for(int j = 0 ; j < yAxis.size(); j++){
+		for(int j = 0 ; j < xAxis.size(); j++){
 			//Iterates through X axis points.
-			for(int k = 0; k < xAxis.size(); k++){
+			for(int k = 0; k < yAxis.size(); k++){
 				//Logic for coordinate comparison.
-				if((compareVec[0] == xAxis[k]) && (compareVec[1] == yAxis[j])){
+				if((compareVec[0] == xAxis[j]) && (compareVec[1] == yAxis[k])){
 				matrix[j][k] = true;
 				}
 			}
@@ -59,7 +59,7 @@ void printMatrix(const vector<vector<bool> > Pmatrix){
 	cout<<"    ";
 	for (int l =0; l < Pmatrix[0].size(); l++){
 		if(l < 10){
-		cout<<l<<"  ";
+		cout<<l+1<<"  ";
 		}
 		else{
 		cout<<l<<" ";
@@ -78,9 +78,9 @@ void printMatrix(const vector<vector<bool> > Pmatrix){
 	}
 	//Prints out Y axis.
 	cout<<"\n";
-	for (int i = 0 ; i <Pmatrix.size(); i++){
+	for (int i = 0 ; i < Pmatrix.size(); i++){
 		if(i<10){
-		cout<<i<<" | ";
+		cout<<i+1<<" | ";
 		}
 		else{
 		cout<<i<<"| ";
@@ -116,7 +116,7 @@ cout<<"Insert Coordinates in format X Y \n";
 
 while(cin>>plotPoint){
 	if(plotPoint >=0){
-	plotVector.push_back(plotPoint);
+	plotVector.push_back(plotPoint-1);
 	}
 	else{break;}
 }
