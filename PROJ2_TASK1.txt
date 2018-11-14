@@ -1,0 +1,27 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+library unisim;
+use unisim.vcomponents.all;
+
+entity v2to4dec is
+	port (  EN : in	  std_logic;
+		I0 : in	  std_logic;
+		I1 : in	  std_logic;
+		Y0 : out  std_logic;
+		Y1 : out  std_logic;
+		Y2 : out  std_logic;
+		Y3 : out  std_logic);
+end v2to4dec;
+
+architecture Fv2to4dec of v2to4dec  is 
+
+
+
+
+
+
+begin
+
+end Fv2to4dec
+
+		
