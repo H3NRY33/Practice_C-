@@ -1,0 +1,19 @@
+
+polyatomic.h  // Header file.
+polyatomic.cpp // Implementation file,
+poly_main.cpp // Testing.
+
+
+A small polyatomic ion review program.
+Takes an arbitrary polyatomic ion from a defined list. User will be given a compound OR a compound name.
+Based off of that, the user will be asked to identify the correct charge, compound/compound name ... OR ALL.
+
+Score Tracking : keeps track of correct answers ...( Will add 3 strikes you're out )
+Current Streak : number of correct questions answered consecutively.
+Mastery: highest streak by user ... returns a ratio of max streak/total polyatomic ions.
+
+There set and get functions for each.
+One of the first OOP small project for practice. Frankly, it's taking more longer than it should.
+
+START: 2/28/18
+END: ...
