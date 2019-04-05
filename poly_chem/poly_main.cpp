@@ -6,12 +6,14 @@ using namespace std;
 
 
 int main(int argx,char* argv[]){
-srand(time(NULL));
-size_t randNum = rand() % 12;
+
 polyatomic testOne;
 
-testOne.getPoly(randNum);
-testOne.checkAns("ammonia");
+testOne.setPoly(7);
+testOne.setSection(1);
+testOne.printAns();
+testOne.askPrint();
+testOne.checkAns("PO4");
 
 
 
