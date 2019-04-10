@@ -22,6 +22,7 @@ One of the first OOP small project for practice. Frankly, it's taking more longe
 
 UPDATE: 4/5/19 
 -- DOES COMPILE AND RUN.
+-- ADDED MACRO GAURD IN CPP FILE.
 -- Most have worked in poly_main.cpp, but needs further testing.
 
 	added FUNCTIONS:
@@ -30,6 +31,7 @@ UPDATE: 4/5/19
 	void askPrint()const;			-- Specifically asks what the current selection is needed ... meaning the correct charge, compound or compound name.
 	string correctAns() const; 		-- Display the absoulute correct answer ... meaning the correct charge, compound or compound name.
 	void printAns() const; 			-- Used to print the correct polyatomic ion for printing.  (WIP)
+	
 	added Private VARIABLE:
 	size_t currentSection; 			-- Keeps track of what information is needed ... it is the #of the array in polyData ... meaning the correct charge, compound or compound name.
 
