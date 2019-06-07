@@ -6,14 +6,14 @@
 #include <cmath>
 
 using namespace std;
-
+// NOTE: THIS IS MEANT TO WORK WITH SIGNED NUMBERS!
 template<class Item>
 class calc203{
     static const size_t DEF_SIZE = 3;
     public:
     // CONSTRUCTOR
     calc203();
-    calc203(size_t numVectors,size_t dimenVector=3);
+    calc203(size_t numVectors,size_t dimenVector=DEF_SIZE);
 
     // COPY CONSTRUCTOR
     calc203(const calc203<Item>& Source);
@@ -25,20 +25,22 @@ class calc203{
     // CONSTANT MEMBER FUNCTIONS.
     vector<Item> getVector(size_t vectorNum) const;
 
+    size_t vecCount() const;
+
     void printVector(size_t vectorNum) const;
 
     // CALC FUNCTIONS.
-    vector<Item> addVec(size_t indexA, size_t indexB);
-    vector<Item> addAll(size_t indexA, size_t indexB);
+    vector<Item> addVec(size_t indexA=0, size_t indexB=1);
+    vector<Item> addAll();
 
-    vector<Item> subVec(size_t indexA, size_t indexB);
-    vector<Item> subAll(size_t indexA, size_t indexB);
+    vector<Item> subVec(size_t indexA=0, size_t indexB=1);
+    vector<Item> subAll(size_t indexA=0, size_t indexB=1);
 
-    vector<Item> multVec(size_t indexA, size_t indexB);
-    vector<Item> multAll(size_t indexA, size_t indexB);
+    vector<Item> multVec(size_t indexA=0, size_t indexB=1);
+    vector<Item> multAll(size_t indexA=0, size_t indexB=1);
 
-    vector<Item> scaleVec(size_t vectorIndex, int scalar);
-    vector<vector<Item> > scaleAll(int scalar);
+    vector<Item> scaleVec(size_t vectorIndex, int scalar=1);
+    vector<vector<Item> > scaleAll(int scalar=1);
 
 
     private:
