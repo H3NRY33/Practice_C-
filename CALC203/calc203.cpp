@@ -8,11 +8,11 @@ calc203<Item>::calc203(){
     maxSize = DEF_SIZE;
 }
 template <class Item>
-calc203<Item>::calc203(size_t numVectors,size_t vectorDimension = DEF_SIZE){
+calc203<Item>::calc203(size_t numVectors,size_t vectorDimension){
     maxSize = vectorDimension;
     previousAnswer(vectorDimension);
     for(size_t i = 0; i < numVectors; i++){
-        vector<Item> myVector(dimenVector);
+        vector<Item> myVector(vectorDimension);
         vectorList.push_back(myVector);
     }
 }
@@ -84,12 +84,12 @@ void calc203<Item>::printVector(size_t vectorNum) const{
 
 // CALC FUNCTIONS.
 template <class Item>
-vector<Item> calc203<Item>::addVec(size_t indexA=0, size_t indexB=1){
+vector<Item> calc203<Item>::addVec(size_t indexA, size_t indexB){
     vector<Item> vecSum(maxSize);
     if((vectorList.size() > indexA && vectorList.size() > indexB) && vectorList.size() >= 2){
         if(sameSize(vectorList[indexA],vectorList[indexB])){
             for(size_t i = 0; i < maxSize; i++){
-                ansVec[i]+=vectorList[indexA][i] + vectorList[indexB][i];
+                vecSum[i]+=vectorList[indexA][i] + vectorList[indexB][i];
             }
         }
     }
@@ -116,7 +116,7 @@ vector<Item> calc203<Item>::addAll(){
 }
 
 template <class Item>
-vector<Item> calc203<Item>::subVec(size_t indexA=0, size_t indexB=1){
+vector<Item> calc203<Item>::subVec(size_t indexA, size_t indexB){
     vector<Item> vecSub(maxSize);
     if(vectorList.size() > indexA && vectorList.size() > indexB){    
         if(sameSize(vectorList[indexA],vectorList[indexB])){
@@ -125,26 +125,26 @@ vector<Item> calc203<Item>::subVec(size_t indexA=0, size_t indexB=1){
             }
         }
     }
-    if(!vectorSub.empty()){
+    if(!vecSub.empty()){
         previousAnswer = vecSub;
     }
     return vecSub;
 }
 
 template <class Item>
-vector<Item> calc203<Item>::multVec(size_t indexA=0, size_t indexB=1){
+vector<Item> calc203<Item>::multVec(size_t indexA, size_t indexB){
     vector<Item> vecMult(maxSize);
      if(vectorList.size() > indexA && vectorList.size() > indexB){
-         if(sameSize(vectorList[indexA],vectorList[indexB]){
+         if(sameSize(vectorList[indexA],vectorList[indexB])){
              for(size_t i = 0; i < maxSize; i++){
-                 vectMult*=vectorList[indexA][i] * vectorList[indexB][i];
+                 vecMult*=vectorList[indexA][i] * vectorList[indexB][i];
              }
          }
      }
      if(!vecMult.empty()){
          previousAnswer = vecMult;
      }
-     return vectMult;
+     return vecMult;
 }
 // NOTE: NEED A SPECIAL CASE WHEN AN ELEMENT HAS A 0.
 template <class Item>
@@ -167,7 +167,7 @@ vector<Item> calc203<Item>::multAll(){
 }
 
 template <class Item>
-vector<Item> calc203<Item>::scaleVec(size_t vectorIndex, int scalar=1){
+vector<Item> calc203<Item>::scaleVec(size_t vectorIndex, int scalar){
     if(sameDimension(vectorList)){
         if(vectorList.size() > vectorIndex){
             for(size_t i = 0; i < maxSize; i++){
@@ -182,7 +182,7 @@ vector<Item> calc203<Item>::scaleVec(size_t vectorIndex, int scalar=1){
 }
 
 template <class Item>
-vector<vector<Item> > calc203<Item>::scaleAll(int scalar=1){
+vector<vector<Item> > calc203<Item>::scaleAll(int scalar){
     if(sameDimension(vectorList)){
         size_t listSize = vectorList.size();
         for(size_t i = 0; i < listSize; i++){
@@ -201,7 +201,7 @@ vector<Item> calc203<Item>::cross(size_t indexA, size_t indexB){
         if(sameSize(vectorList[indexA],vectorList[indexB]) && maxSize == 3){ // CROSS PRODUCT RULE        
             crossProduct.push_back(vectorList[indexA][1]*vectorList[indexB][2]) -(vectorList[indexA][2]*vectorList[indexB][1]);        
             crossProduct.push_back(vectorList[indexA][2]*vectorList[indexB][0]) -(vectorList[indexA][0]*vectorList[indexB][2]); 
-            crossProduct.push_back(vectorList[indexA][0]*vectorList[indexB][1]) -(vectorList[indexA][1]*vectorList[indexB][0])                                   
+            crossProduct.push_back(vectorList[indexA][0]*vectorList[indexB][1]) -(vectorList[indexA][1]*vectorList[indexB][0]);                                   
         }
     }
     if(!crossProduct.empty()){
@@ -209,7 +209,5 @@ vector<Item> calc203<Item>::cross(size_t indexA, size_t indexB){
     }
     return crossProduct;
 }
-
-
 
 #endif

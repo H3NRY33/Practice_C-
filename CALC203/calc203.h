@@ -28,7 +28,7 @@ class calc203{
     vector<Item> getVector(size_t vectorNum) const;
     vector<Item> getPrevious() const;
     void printVector(size_t vectorNum) const;
-    size_t vecCount() const;;
+    size_t vecCount() const;
 
     // CALC FUNCTIONS.
     vector<Item> addVec(size_t indexA=0, size_t indexB=1);
@@ -37,7 +37,7 @@ class calc203{
     vector<Item> subVec(size_t indexA=0, size_t indexB=1);
 
     vector<Item> multVec(size_t indexA=0, size_t indexB=1);
-    vector<Item> multAll());
+    vector<Item> multAll();
 
     vector<Item> scaleVec(size_t vectorIndex, int scalar=1);
     vector<vector<Item> > scaleAll(int scalar=1);
@@ -48,7 +48,6 @@ class calc203{
     vector<Item> previousAnswer;
     size_t maxSize;
 
-    template <class Item>
     void printVec(vector<Item> vectorAns, int vectorNum = -1) const{
         if(vectorNum != -1){
             cout<<"\n"<<vectorNum<<": ";
@@ -62,12 +61,11 @@ class calc203{
         }
         cout<<"}\n";
     }
-    template <class Item> 
+
     bool sameSize(vector<Item> vector1, vector<Item> vector2){
         return((vector1.size() == maxSize) && (vector2.size() == maxSize));
     }
 
-    template<class Item>
     bool sameDimension(vector<vector<Item> > vectorCheck){
         if(!vectorCheck.empty()){
             size_t vectorSize = vectorCheck.size();
@@ -81,4 +79,5 @@ class calc203{
         return false;
     }
 };
+#include "calc203.cpp"
 #endif
