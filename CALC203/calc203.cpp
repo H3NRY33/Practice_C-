@@ -133,13 +133,18 @@ vector<Item> calc203<Item>::subVec(size_t indexA=0, size_t indexB=1){
 
 template <class Item>
 vector<Item> calc203<Item>::multVec(size_t indexA=0, size_t indexB=1){
-    vector<Item> vectorMult(maxSize);
+    vector<Item> vecMult(maxSize);
      if(vectorList.size() > indexA && vectorList.size() > indexB){
          if(sameSize(vectorList[indexA],vectorList[indexB]){
-
+             for(size_t i = 0; i < maxSize; i++){
+                 vectMult*=vectorList[indexA][i] * vectorList[indexB][i];
+             }
          }
-
      }
+     if(!vecMult.empty()){
+         previousAnswer = vecMult;
+     }
+     return vectMult;
 }
 // NOTE: NEED A SPECIAL CASE WHEN AN ELEMENT HAS A 0.
 template <class Item>
@@ -162,13 +167,48 @@ vector<Item> calc203<Item>::multAll(){
 }
 
 template <class Item>
-vector<Item> calc203<Item>::scaleVec(size_t vectorIndex, int scalar=1){}
+vector<Item> calc203<Item>::scaleVec(size_t vectorIndex, int scalar=1){
+    if(sameDimension(vectorList)){
+        if(vectorList.size() > vectorIndex){
+            for(size_t i = 0; i < maxSize; i++){
+                vectorList[vectorIndex][i]*=scalar;
+            }
+        }
+    }
+    if(!vectorList[vectorIndex].empty()){
+        previousAnswer = vectorList[vectorIndex];
+    }
+    return vectorList[vectorIndex];
+}
 
 template <class Item>
-vector<vector<Item> > calc203<Item>::scaleAll(int scalar=1){}
+vector<vector<Item> > calc203<Item>::scaleAll(int scalar=1){
+    if(sameDimension(vectorList)){
+        size_t listSize = vectorList.size();
+        for(size_t i = 0; i < listSize; i++){
+            for(size_t j = 0; j < maxSize; j++){
+                vectorList[i][j]*=scalar;
+            }
+        }
+    }
+    return vectorList;
+}
 
 template <class Item> 
-vector<Item> calc203<Item>::cross(size_t indexA, size_t indexB){}
+vector<Item> calc203<Item>::cross(size_t indexA, size_t indexB){
+    vector<Item> crossProduct;
+    if(vectorList.size() > indexA && vectorList.size() > indexB){
+        if(sameSize(vectorList[indexA],vectorList[indexB]) && maxSize == 3){ // CROSS PRODUCT RULE        
+            crossProduct.push_back(vectorList[indexA][1]*vectorList[indexB][2]) -(vectorList[indexA][2]*vectorList[indexB][1]);        
+            crossProduct.push_back(vectorList[indexA][2]*vectorList[indexB][0]) -(vectorList[indexA][0]*vectorList[indexB][2]); 
+            crossProduct.push_back(vectorList[indexA][0]*vectorList[indexB][1]) -(vectorList[indexA][1]*vectorList[indexB][0])                                   
+        }
+    }
+    if(!crossProduct.empty()){
+        previousAnswer = crossProduct;
+    }
+    return crossProduct;
+}
 
 
 
