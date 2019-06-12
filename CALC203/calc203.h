@@ -28,6 +28,7 @@ class calc203{
     vector<Item> getVector(size_t vectorNum) const;
     vector<Item> getPrevious() const;
     void printVector(size_t vectorNum) const;
+    void printAll() const;
     size_t vecCount() const;
 
     // CALC FUNCTIONS.

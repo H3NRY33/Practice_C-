@@ -17,7 +17,7 @@ vector<char> top;
 vector<char> mid;
 vector<char> bot;
 //creates the vectors that show the dice
-for (int j = 0 ; j<13 ; j++){ //CREATES THE SET OF DICE IN EACH VECTOR
+for (int j = 0 ; j < 13 ; j++){ //CREATES THE SET OF DICE IN EACH VECTOR
     switch(j){
     case 0 : mid.push_back('*'); top.push_back((char)32);bot.push_back((char)32); break;
     case 1 : mid.push_back('*'); top.push_back((char)32);bot.push_back((char)32); break;

@@ -37,7 +37,7 @@ string isLegit(){
 //Function that capitalizes a string
 string Upper(string &upper){
 	
-for (int i = 0 ; i<upper.length(); i++){
+for (int i = 0 ; i < upper.length(); i++){
 	upper[i] = toupper(upper[i]);
 }
 	return upper;
@@ -87,7 +87,7 @@ void converBIN(vector<char> check){
 	vector <int> octAns;
 	
 	//Check where in binary it is weighted
-	for (int i  = 0 ;  i <check.size(); i++){
+	for (int i  = 0 ;  i < check.size(); i++){
 			if ((check[i]=='1') && (Count < 3)){
 				Sum+=Value[Count];
 			}

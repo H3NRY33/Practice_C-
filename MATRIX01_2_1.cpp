@@ -5,6 +5,8 @@ using namespace std;
 
 /*S: 11/08/18
   E: 11/08/18 */
+  
+// ! ! !  NOTE: To escape input loop: ENTER -1  
 
 //Function that creates a vector of ints with contents of i value.
 void createAxis(const int length, vector<int> &V){

@@ -8,17 +8,16 @@ S:10/11/18
 */
 //Function that checks whether or not a value is found within an array
 bool isIn(int value,int check[]){
-	bool isfound = false;
 	size_t count = 0;
 	
 	//while the array is not empty
 	while(check[count]!= '\0'){
 		if(value == check[count]){
-			isfound = true;	
+			return true;
 		}
 		count++;
 	}
-	return isfound;	
+	return false;	
 }
 
 int main(){

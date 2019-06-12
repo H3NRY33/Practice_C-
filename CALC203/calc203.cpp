@@ -10,7 +10,6 @@ calc203<Item>::calc203(){
 template <class Item>
 calc203<Item>::calc203(size_t numVectors,size_t vectorDimension){
     maxSize = vectorDimension;
-    previousAnswer(vectorDimension);
     for(size_t i = 0; i < numVectors; i++){
         vector<Item> myVector(vectorDimension);
         vectorList.push_back(myVector);
@@ -79,6 +78,20 @@ void calc203<Item>::printVector(size_t vectorNum) const{
     }
     else{
         cout<<"VECTOR INDEX IS NOT VALID\n";
+    }
+}
+template <class Item> 
+void calc203<Item>::printAll() const{
+    size_t vecSize = vectorList.size();
+    for(size_t i = 0; i < vecSize; i++){
+        cout<<"<";
+        for(size_t j = 0 ; j < maxSize; j++){
+            cout<<vectorList[i][j];
+            if(j != maxSize - 1){
+                cout<<","<<setw(2);
+            }
+        }
+        cout<<">\n";
     }
 }
 

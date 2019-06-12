@@ -3,7 +3,7 @@
 using namespace std;
 
 /* Function responsible for printing the dice in "DICEGAME*/
-S:10/11/18
+// S:10/11/18
 
 //function that checks if a value is within an array 
 bool isIn(int value,int check[]){
@@ -57,8 +57,6 @@ for (int j = 0 ; j<13 ; j++){
 	bot.push_back((char)32);
 	}
 }
-
-
 
 cout<<"LETS PRINT THE DICE\n";
 for (int k = 0 ; k<13 ; k++){

@@ -6,7 +6,7 @@ using namespace std;
 int convBIN(string bin){
   int result;
 //iterates through entire string
-  for(int i = 0; i <bin.size(); i++){
+  for(int i = 0; i < bin.size(); i++){
   result*=2;
   switch(bin[i]){
     case '0':{break;}
