@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "fpeek.h"
+#include "src/fpeek.h"
 using namespace std;
 
 int main(){

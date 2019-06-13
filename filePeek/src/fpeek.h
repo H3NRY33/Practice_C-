@@ -15,5 +15,5 @@ class fpeek{
 
     private:
 };
-
+#include "fpeek.cpp"
 #endif
