@@ -1,5 +1,5 @@
-#ifndef __FPEEK_H__
-#define __FPEEK_H__
+#ifndef __SHALIST_H__
+#define __SHALIST_H__
 #include <iostream> 
 #include <cstdio>
 #include <cstdlib>
@@ -9,11 +9,11 @@
 #include <string>
 using namespace std;
 
-class fpeek{
+class ShaList{
     public:
     typedef string Item;
 
     private:
 };
-#include "fpeek.cpp"
+#include "ShaList.cpp"
 #endif
