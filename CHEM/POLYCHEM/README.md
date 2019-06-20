@@ -2,7 +2,7 @@ polyatomic.h  // Header file.
 polyatomic.cpp // Implementation file,
 poly_main.cpp // Testing.
 
-START: 2/28/18
+START: February 28, 2019
 END: ...
 
 

@@ -1,6 +1,6 @@
 ### #include "hset.h" 
 ### AKA "Henry_set" :D
-#### B:5/13/19
+#### S: May 13, 2019
 ##
 ### A simple data structure to be used for the graphs.
 #### Has been tested on test_hset.cpp
