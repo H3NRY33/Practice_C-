@@ -10,10 +10,14 @@ NodeHS::NodeHS(){
     previous = NULL;
 }
 NodeHS::NodeHS(string initialHash, string initialValue,NodeHS* previous, NodeHS* link){
- this->currentHash = initialHash;
- this->stringValue = initialValue;
- this->previous = previous;
- this->link = link;
+    this->stringValue = initialValue;
+    this->previous = previous;
+    this->link = link;
+    if(isHash(initialHash)){
+    this->currentHash = initialHash;
+    }else{
+    cout<<"NOT A VALID HASH!\n";
+    }
 }
 
 // COPY CONSTRUCTOR.
