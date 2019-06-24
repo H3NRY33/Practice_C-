@@ -2,6 +2,7 @@
 #define __NODEHS_H__
 #include <iostream> 
 #include <iomanip>
+#include <cassert>
 #include <cstdlib>
 #include <cstdio>
 #include <string> 
@@ -12,33 +13,33 @@ class NodeHS{
 public: 
 // CONSTRUCTOR.
 NodeHS();
-NodeHS(string initialHash, string initialValue,NodeHS* previous=NULL, NodeHS* link=NULL);
+NodeHS(string initialHash, string initialValue,NodeHS* previousLink=NULL, NodeHS* nextLink=NULL);
 // COPY CONSTRUCTOR.
 NodeHS(const NodeHS& Source);
 
 // MODIFICATION MEMBER FUNCTIONS.
-void setLink(NodeHS* nextNode); // Set link to the next node.
 void setPrevious(NodeHS* previousNode); // Set link to the previous node.
-void setHash(const string& newHash); // Set the SHA256 value.
+void setNext(NodeHS* nextNode); // Set link to the next node.
 void setString(const string& newString); // Set the plain string value.
+void setHash(const string& newHash); // Set the SHA256 value.
 void clearData(); // Clear the contents of the hash and the plain string value.
 
 // CONSTANT MEMBER FUNCTIONS.
-NodeHS* getLink() const; // Get a pointer to the next node.
 NodeHS* getPrevious() const; // Get a pointer of the node that is pointing to this node.
-void printData() const; // Print the Hash and String value.
-string getHash() const; // Return a string containing a hash value.
+NodeHS* getNext() const; // Get a pointer to the next node.
 string getStrValue() const;// Return a string containing the plain string value.
-char hashAt(size_t Index)const;// Get the hash value at a specific index.
+string getHash() const; // Return a string containing a hash value.
+void printData() const; // Print the Hash and String value.
 char stringAt(size_t Index) const;// Get the plain string at a specific index.
+char hashAt(size_t Index) const;// Get the hash value at a specific index.
 size_t getStrValueLength() const; // Get the length of the string value.
-bool isEmpty(); // Check if there is data in the node.
+bool isEmpty() const; // Check if there is data in the node.
 
 private: 
 string currentHash; // Stores the SHA256 Value of the String.
-string stringValue; // Stores the word value of the Hash.
-NodeHS* link; // Pointer to the next node.
+string stringValue; // Stores the word value of the Hash.'NodeHS* previous; // Pointer to the previous node.
 NodeHS* previous; // Pointer to the previous node.
+NodeHS* next; // Pointer to the next node.
 
 // Function used to set the bounds on whether the Hash "HashCheck" should have all lower case letters or upper case letters.
 void setBounds(string HashCheck,int& modifyLower, int& modifyUpper){
@@ -52,12 +53,12 @@ int maxOccurance = 8; // The the amount of occurances that must be reached to se
         lowerOccurance++;
         }
         // Once the count of lower case or uppercase letter reach maxOccurance, then set the bounds.
-        if(capsOccurance == maxOccurance && capsOccurance != lowerOccurance){
+        if(capsOccurance == maxOccurance && capsOccurance > lowerOccurance){ // Once caps threshhold has been reached.
             modifyLower = 65;
             modifyUpper = 90;
             return;
         }
-        else if(lowerOccurance == maxOccurance && lowerOccurance !=capsOccurance){
+        else if(lowerOccurance == maxOccurance && lowerOccurance > capsOccurance){// Once lower threshold has been reached.
             modifyLower = 97;
             modifyUpper = 122;
             return;

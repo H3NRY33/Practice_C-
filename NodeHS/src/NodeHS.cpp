@@ -4,79 +4,75 @@
 
 // CONSTRUCTOR.
 NodeHS::NodeHS(){
-    currentHash = "";
-    stringValue = "";
-    link = NULL;
-    previous = NULL;
+    this->currentHash = "";
+    this->stringValue = "";
+    this->previous = NULL;
+    this->next = NULL;
 }
-NodeHS::NodeHS(string initialHash, string initialValue,NodeHS* previous, NodeHS* link){
-    this->stringValue = initialValue;
-    this->previous = previous;
-    this->link = link;
-    if(isHash(initialHash)){
+NodeHS::NodeHS(string initialHash, string initialValue, NodeHS* previousLink, NodeHS* nextLink){
+    assert((isHash(initialHash)) && (initialValue.size() != 0));
     this->currentHash = initialHash;
-    }else{
-    cout<<"NOT A VALID HASH!\n";
-    }
+    this->stringValue = initialValue;
+    this->previous = previousLink;
+    this->next = nextLink;
 }
 
 // COPY CONSTRUCTOR.
 NodeHS::NodeHS(const NodeHS& Source){
+    assert((isHash(Source.currentHash)) && (Source.stringValue.size() != 0));
     this->currentHash = Source.currentHash;
     this->stringValue = Source.stringValue;
 }
 
 // MODIFICATION MEMBER FUNCTIONS.
-void NodeHS::setLink(NodeHS* nextNode){
-    this->link = nextNode;
-}
 void NodeHS::setPrevious(NodeHS* previousNode){
     this->previous = previousNode;
 }
-
-void NodeHS::setHash(const string& newHash){
-    this->currentHash = newHash;
+void NodeHS::setNext(NodeHS* nextNode){
+    this->next = nextNode;
 }
 void NodeHS::setString(const string& newString){
     this->stringValue = newString;
 }
-
+void NodeHS::setHash(const string& newHash){
+    assert(isHash(newHash));
+    this->currentHash = newHash;
+}
 void NodeHS::clearData(){
+    assert((this->currentHash.size() != 0) && (this->stringValue.size() != 0));
     this->currentHash = "";
     this->stringValue = "";
 }
 
 // CONSTANT MEMBER FUNCTIONS.
-NodeHS* NodeHS::getLink() const{
-    return link;
-}
 NodeHS* NodeHS::getPrevious() const{
     return previous;
 }
-
-void NodeHS::printData() const{
-    cout<<"CURRENT_HASH:"<<setw(2)<<currentHash<<"\n";
-    cout<<"STRING_VALUE:"<<setw(2)<<stringValue<<"\n";
-}
-string NodeHS::getHash() const{
-    return currentHash;
+NodeHS* NodeHS::getNext() const{
+    return next;
 }
 string NodeHS::getStrValue() const{
     return stringValue;
 }
-char NodeHS::hashAt(size_t Index)const{
-    return currentHash[Index];
+string NodeHS::getHash() const{
+    return currentHash;
 }
-char NodeHS::stringAt(size_t Index)const {
+void NodeHS::printData() const{
+    cout<<"CURRENT_HASH:"<<setw(2)<<currentHash<<"\n";
+    cout<<"STRING_VALUE:"<<setw(2)<<stringValue<<"\n";
+}
+char NodeHS::stringAt(size_t Index) const{
+    assert((Index >= 0) && (Index < stringValue.size()));
     return stringValue[Index];
 }
-
+char NodeHS::hashAt(size_t Index) const{
+    assert((Index >= 0) && (Index < 64));
+    return currentHash[Index];
+}
 size_t NodeHS::getStrValueLength() const{
     return stringValue.size();
 }
-
-bool NodeHS::isEmpty(){
+bool NodeHS::isEmpty() const{
     return (stringValue.size() == 0 && currentHash.size() == 0);
 }
-
 #endif
