@@ -48,7 +48,7 @@ class calc203{
     vector<vector<Item> > vectorList;
     vector<Item> previousAnswer;
     size_t maxSize;
-
+    // Print a vector at a specific index.
     void printVec(vector<Item> vectorAns, int vectorNum = -1) const{
         if(vectorNum != -1){
             cout<<"\n"<<vectorNum<<": ";
@@ -62,11 +62,11 @@ class calc203{
         }
         cout<<"}\n";
     }
-
+    // Checks if two vectors are the same size. Return true or false.
     bool sameSize(vector<Item> vector1, vector<Item> vector2){
         return((vector1.size() == maxSize) && (vector2.size() == maxSize));
     }
-
+    // Helper function that makes sure that all the vectors are the same dimension. Return true or false.
     bool sameDimension(vector<vector<Item> > vectorCheck){
         if(!vectorCheck.empty()){
             size_t vectorSize = vectorCheck.size();

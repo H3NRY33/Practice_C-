@@ -11,7 +11,7 @@ using namespace std;
 
 class ShaList{
     public:
-    typedef string Item;
+
 
     private:
 };

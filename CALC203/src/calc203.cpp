@@ -26,8 +26,8 @@ calc203<Item>::calc203(const calc203<Item>& Source){
 
 // MODIFICATION MEMBER FUNCTIONS.
 template <class Item>
-void calc203<Item>::setVector(size_t vectorNum,vector<Item> inputVector){
-    if(vectorList.size() > vectorNum && inputVector.size() == maxSize){
+void calc203<Item>::setVector(size_t vectorNum, vector<Item> inputVector){ // Set a new vector at a specific index within the vector of vectors.
+    if(vectorList.size() > vectorNum && inputVector.size() == maxSize){ // Make sure vectorNum is an index within the range, make sure the input vector has the same dimensions as the other vectors.
         vectorList[vectorNum] = inputVector;
     }
     else{
@@ -35,7 +35,7 @@ void calc203<Item>::setVector(size_t vectorNum,vector<Item> inputVector){
     }
 }
 template<class Item> 
-void calc203<Item>::addVector(vector<Item> inputVector){
+void calc203<Item>::addVector(vector<Item> inputVector){ // Make sure the vector has the correct dimensions and add it to the back of the vector of vectors.
     if(inputVector.size() == maxSize){
         vectorList.push_back(inputVector);
     }
@@ -44,7 +44,7 @@ void calc203<Item>::addVector(vector<Item> inputVector){
     }
 }
 template<class Item> 
-void calc203<Item>::clearData(){
+void calc203<Item>::clearData(){ // Clear all the data variables.
     vectorList.clear();
     previousAnswer.clear();
     maxSize = DEF_SIZE;
@@ -52,7 +52,7 @@ void calc203<Item>::clearData(){
 
 // CONSTANT MEMBER FUNCTIONS.
 template <class Item>
-vector<Item> calc203<Item>::getVector(size_t vectorNum) const{
+vector<Item> calc203<Item>::getVector(size_t vectorNum) const{ // Get the contents of a vector at a specific index.
     if(vectorList.size() > vectorNum){
         return vectorList[vectorNum];
     }
@@ -62,17 +62,17 @@ vector<Item> calc203<Item>::getVector(size_t vectorNum) const{
     }
 }
 template <class Item>
-size_t calc203<Item>::vecCount() const{
+size_t calc203<Item>::vecCount() const{ // Return the number of vectors.
     return vectorList.size();
 }
 
 template<class Item> 
-vector<Item> calc203<Item>::getPrevious() const{
+vector<Item> calc203<Item>::getPrevious() const{ // Get the vector that you previously accessed.
 return previousAnswer;
 }
 
 template <class Item>
-void calc203<Item>::printVector(size_t vectorNum) const{
+void calc203<Item>::printVector(size_t vectorNum) const{ // Print a vector at a specific index.
     if(vectorList.size() > vectorNum){
     printVec(vectorList[vectorNum],vectorNum);
     }
@@ -81,7 +81,7 @@ void calc203<Item>::printVector(size_t vectorNum) const{
     }
 }
 template <class Item> 
-void calc203<Item>::printAll() const{
+void calc203<Item>::printAll() const{ // Print the entire vector of vectors.
     size_t vecSize = vectorList.size();
     for(size_t i = 0; i < vecSize; i++){
         cout<<"<";
@@ -97,7 +97,7 @@ void calc203<Item>::printAll() const{
 
 // CALC FUNCTIONS.
 template <class Item>
-vector<Item> calc203<Item>::addVec(size_t indexA, size_t indexB){
+vector<Item> calc203<Item>::addVec(size_t indexA, size_t indexB){ // Add two vectors and return the output vector.
     vector<Item> vecSum(maxSize);
     if((vectorList.size() > indexA && vectorList.size() > indexB) && vectorList.size() >= 2){
         if(sameSize(vectorList[indexA],vectorList[indexB])){
@@ -106,30 +106,30 @@ vector<Item> calc203<Item>::addVec(size_t indexA, size_t indexB){
             }
         }
     }
-    if(!vecSum.empty()){
+    if(!vecSum.empty()){ // Store the answer as the previous vector accesed... Make sure it's not empty.
         previousAnswer = vecSum;
     }
     return vecSum;
 }
 template <class Item>
-vector<Item> calc203<Item>::addAll(){
+vector<Item> calc203<Item>::addAll(){ // Add all the components of the vector, all the X Y Z 
     vector<Item> totalSum(maxSize);
     size_t listSize = vectorList.size();
-    if(sameDimension(vectorList)){
+    if(sameDimension(vectorList)){ // Make sure that all the vectors are the same dimension.
         for(size_t i = 0; i < listSize; i++){
             for(size_t j = 0; j < maxSize; j++){
                 totalSum[j]+=vectorList[i][j];
             }
         }
     }
-    if(!totalSum.empty()){
+    if(!totalSum.empty()){ // Store the answer in the previous vector.
         previousAnswer = totalSum;
     }
     return totalSum;
 }
 
 template <class Item>
-vector<Item> calc203<Item>::subVec(size_t indexA, size_t indexB){
+vector<Item> calc203<Item>::subVec(size_t indexA, size_t indexB){ // Subtract the index of two vectors within the specified indexes.
     vector<Item> vecSub(maxSize);
     if(vectorList.size() > indexA && vectorList.size() > indexB){    
         if(sameSize(vectorList[indexA],vectorList[indexB])){
@@ -145,7 +145,7 @@ vector<Item> calc203<Item>::subVec(size_t indexA, size_t indexB){
 }
 
 template <class Item>
-vector<Item> calc203<Item>::multVec(size_t indexA, size_t indexB){
+vector<Item> calc203<Item>::multVec(size_t indexA, size_t indexB){ // Multiply two vectors that are in the vector list.
     vector<Item> vecMult(maxSize);
      if(vectorList.size() > indexA && vectorList.size() > indexB){
          if(sameSize(vectorList[indexA],vectorList[indexB])){
@@ -180,7 +180,7 @@ vector<Item> calc203<Item>::multAll(){
 }
 
 template <class Item>
-vector<Item> calc203<Item>::scaleVec(size_t vectorIndex, int scalar){
+vector<Item> calc203<Item>::scaleVec(size_t vectorIndex, int scalar){ // Multiply a vector at a specific element by a scalar.
     if(sameDimension(vectorList)){
         if(vectorList.size() > vectorIndex){
             for(size_t i = 0; i < maxSize; i++){
@@ -195,7 +195,7 @@ vector<Item> calc203<Item>::scaleVec(size_t vectorIndex, int scalar){
 }
 
 template <class Item>
-vector<vector<Item> > calc203<Item>::scaleAll(int scalar){
+vector<vector<Item> > calc203<Item>::scaleAll(int scalar){ // Multiply all the vectors by a scalar.
     if(sameDimension(vectorList)){
         size_t listSize = vectorList.size();
         for(size_t i = 0; i < listSize; i++){
@@ -206,7 +206,7 @@ vector<vector<Item> > calc203<Item>::scaleAll(int scalar){
     }
     return vectorList;
 }
-
+// NEEDS TESTING    == APPLY THE CROSS PRODUCT RULE  23 31 12 
 template <class Item> 
 vector<Item> calc203<Item>::cross(size_t indexA, size_t indexB){
     vector<Item> crossProduct;
