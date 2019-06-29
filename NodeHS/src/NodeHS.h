@@ -94,26 +94,24 @@ void copyNode(const NodeHS* NodeSource, NodeHS*& NodeRecieve); // Copies all the
 // List Info
 size_t list_length(NodeHS* headPtr);
 
-
 NodeHS* list_tail(NodeHS* headPtr);
 
 // List Modification.
 void list_push(NodeHS* headPtr, NodeHS* newNode); 
 void list_clear(NodeHS*& headPtr);
 void list_copy(NodeHS* SourcePtr, NodeHS*& newListHead);
-void list_head_insert(NodeHS*& headPtr, NodeHS* newEntry);
+void list_head_insert(NodeHS*& headPtr, NodeHS* newNode);
 void list_head_remove(NodeHS*& headPtr);
 
-
 void list_insert(NodeHS* previousPtr, NodeHS* newNode);
-size_t list_length(const NodeHS* headPtr);
+size_t list_length(NodeHS* headPtr);
 
-NodeHS* list_copy(NodeHS* SourcePtr); 
+
 NodeHS* findNode(NodeHS* headPtr, size_t Index);
-NodeHS* locateString(NodeHS* headPtr);
-NodeHS* locateHash(NodeHS* headPtr);
+NodeHS* locateString(NodeHS* headPtr, string targetString);
+NodeHS* locateHash(NodeHS* headPtr,string targetHash);
 
-void print_list(const NodeHS* headPtr, bool printLength=false);
+void print_list(NodeHS* headPtr, bool printInfo=false);
 void list_remove(NodeHS* previousPtr);
 
 #include "NodeHS.cpp"

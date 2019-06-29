@@ -173,20 +173,88 @@ void list_copy(NodeHS* SourcePtr, NodeHS*& newListHead){
     }
     delete newListHead->getPrevious(); // Delete the dummy node we made in the beginning.
 }
-void list_head_insert(NodeHS*& headPtr, NodeHS*& newEntry){}
-void list_head_remove(NodeHS*& headPtr){}
+void list_head_insert(NodeHS*& headPtr, NodeHS*& newNode){
+    if(headPtr != NULL){
+        doubleLink(newNode,headPtr);
+        headPtr = newNode;
+    }
+}
+void list_head_remove(NodeHS*& headPtr){
+    if(headPtr->getNext() != NULL){
+        headPtr = headPtr->getNext();
+        delete headPtr->getPrevious();
+        return;
+    }
+    delete headPtr;
+}
+void list_insert(NodeHS*& previousPtr, NodeHS*& newNode){
+    if(previousPtr != NULL && newNode != NULL){
+        newNode->setNext(previousPtr->getNext());
+        newNode->setPrevious(previousPtr);
+        if(previousPtr->getNext() != NULL){
+            previousPtr->getNext()->setPrevious(newNode);
+        }
+        previousPtr->setNext(newNode);
+    }
+}
+NodeHS* findNode(NodeHS* headPtr, size_t targetIndex){
+    NodeHS* CurrentNode = headPtr;
+    size_t listLength = list_length(headPtr);
+    size_t NodePosition = 0;
 
-void list_insert(NodeHS*& previousPtr, NodeHS*& newNode){}
-
-NodeHS* list_copy(NodeHS* SourcePtr){}
-NodeHS* findNode(NodeHS* headPtr, size_t Index){}
-NodeHS* locateString(const NodeHS* headPtr){}
-NodeHS* locateHash(const NodeHS* headPtr){}
-
-void print_list(const NodeHS* headPtr, bool printInfo=false){}
-void list_remove(NodeHS* previousPtr){}
-
-
-
+    while(NodePosition < listLength){
+        if(NodePosition == targetIndex){
+            return CurrentNode;
+        }
+        CurrentNode = CurrentNode->getNext();
+        NodePosition++;
+    }
+    return NULL;
+}
+NodeHS* locateString(NodeHS* headPtr, string targetString){
+    NodeHS* CurrentNode = headPtr;
+    while(CurrentNode->getNext() != NULL){
+        if((CurrentNode->getStrValue()) == targetString){
+            return CurrentNode;
+        }
+        CurrentNode = CurrentNode->getNext();
+    }
+    return NULL;
+}
+NodeHS* locateHash(NodeHS* headPtr, string targetHash){
+    NodeHS* CurrentNode = headPtr;
+    while(CurrentNode->getNext() != NULL){
+        if((CurrentNode->getHash()) == targetHash){
+            return CurrentNode;
+        }
+        CurrentNode = CurrentNode->getNext();
+    }
+    return NULL;
+}
+void print_list(NodeHS* headPtr, bool printInfo){
+    NodeHS* CurrentNode = headPtr;
+    size_t nodeCount = 0;
+    while(CurrentNode->getNext() != NULL){
+        if(printInfo){
+            cout<<"NODE: "<<nodeCount<<"\n";
+        }
+        CurrentNode->printData();
+        CurrentNode = CurrentNode->getNext();
+        if(printInfo){
+            nodeCount++;
+        }
+    }
+    if(printInfo){
+        cout<<"\nList Length: "<<list_length(headPtr)<<"\n";
+    }
+}
+void list_remove(NodeHS* previousPtr){
+    NodeHS* futureNode = previousPtr->getNext()->getNext();
+    delete previousPtr->getNext();
+    previousPtr->setNext(futureNode);
+    if(futureNode != NULL){
+        futureNode->setPrevious(previousPtr);
+    }
+}
 
 #endif
