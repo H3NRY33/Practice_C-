@@ -21,7 +21,7 @@ int main(){
     testNode->setPrevious(NULL);
     testNode1->setPrevious(testNode);
     testNode2->setPrevious(testNode2);
-
+    print_list(headPtr,true);
 
 
 

@@ -234,7 +234,7 @@ NodeHS* locateHash(NodeHS* headPtr, string targetHash){
 void print_list(NodeHS* headPtr, bool printInfo){
     NodeHS* CurrentNode = headPtr;
     size_t nodeCount = 0;
-    while(CurrentNode->getNext() != NULL){
+    while(CurrentNode != NULL){
         if(printInfo){
             cout<<"NODE: "<<nodeCount<<"\n";
         }
@@ -245,7 +245,7 @@ void print_list(NodeHS* headPtr, bool printInfo){
         }
     }
     if(printInfo){
-        cout<<"\nList Length: "<<list_length(headPtr)<<"\n";
+        cout<<"\nLIST LENGTH: "<<list_length(headPtr)<<"\n";
     }
 }
 void list_remove(NodeHS* previousPtr){
