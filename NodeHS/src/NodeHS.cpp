@@ -23,6 +23,11 @@ NodeHS::NodeHS(const NodeHS& Source){
     this->currentHash = Source.currentHash;
     this->stringValue = Source.stringValue;
 }
+NodeHS::NodeHS(const NodeHS* Source){
+    assert((isHash(Source->currentHash)) && (Source->stringValue.size() != 0));
+    this->currentHash = Source->currentHash;
+    this->stringValue = Source->stringValue;  
+}
 
 // MODIFICATION MEMBER FUNCTIONS.
 void NodeHS::setPrevious(NodeHS* previousNode){
@@ -45,6 +50,15 @@ void NodeHS::clearData(){
 }
 
 // CONSTANT MEMBER FUNCTIONS.
+NodeHS* NodeHS::getValidLink() const{
+    if(this->previous != NULL && this->next == NULL){
+        return this->previous;
+    }
+    else if(this->next != NULL && this->previous == NULL){
+        return this->next;
+    }
+    return NULL;
+}
 NodeHS* NodeHS::getPrevious() const{
     return previous;
 }
@@ -75,4 +89,104 @@ size_t NodeHS::getStrValueLength() const{
 bool NodeHS::isEmpty() const{
     return (stringValue.size() == 0 && currentHash.size() == 0);
 }
+bool NodeHS::isSingle() const{
+    return ((this->previous == NULL) && (this->next == NULL));
+} 
+bool NodeHS::strongLink()const{
+    return ((this->previous != NULL) && (this->next != NULL));
+}
+
+// Node Modification
+void doubleLink(NodeHS*& Node1, NodeHS*& Node2){
+    if((Node1->getNext() == NULL) && (Node2->isSingle())){ // Make sure that "Node1" has nothing in front of it, and that "Node2" has NO links.
+        Node1->setNext(Node2);
+        Node2->setPrevious(Node1);
+    }
+}
+void copyNode(const NodeHS* NodeSource, NodeHS*& NodeRecieve){
+    delete NodeRecieve; // Delete the node that "NodeRecieve was pointing to"
+    NodeRecieve= new NodeHS(NodeSource); // Make NodeReceive point to the new node created
+}
+
+// List Info
+size_t list_length(NodeHS* headPtr){
+    if(headPtr != NULL){
+        NodeHS* CurrentNode = headPtr;
+        size_t numberNodes = 0;
+        while(CurrentNode != NULL){
+            CurrentNode = CurrentNode->getNext();
+            numberNodes++;
+        }
+        return numberNodes;
+    }
+    return 0;
+
+}
+NodeHS* list_tail(NodeHS* headPtr){
+    if(headPtr != NULL){
+        NodeHS* CurrentNode = headPtr;
+        while(CurrentNode != NULL){
+            CurrentNode = CurrentNode->getNext();
+        }
+        return CurrentNode;
+    }
+    return NULL;
+}
+
+// List manipulations.
+void list_push(NodeHS* headPtr, NodeHS* newNode){
+    NodeHS* lastNode = list_tail(headPtr);
+    if(lastNode != NULL){
+        doubleLink(lastNode,newNode);
+    }
+}
+void list_clear(NodeHS*& headPtr){
+    NodeHS* lastNode = list_tail(headPtr);
+    if(lastNode != NULL){
+        NodeHS* backNode = lastNode;
+        NodeHS* frontNode = NULL;
+        while(backNode != headPtr){
+            frontNode = backNode;
+            backNode = backNode->getPrevious();
+            delete frontNode;
+        }
+    }
+    delete headPtr;
+}
+void list_copy(NodeHS* SourcePtr, NodeHS*& newListHead){
+    NodeHS* lastNode = list_tail(newListHead);
+    if(lastNode != NULL){ // If the new list head has a list, then clear it. We are overwriting.
+        list_clear(newListHead);
+    }
+
+    NodeHS* currentSource = SourcePtr; // Pointer used to iterate the source list.
+    NodeHS* sentinel = NULL; // Dummy node used to make a copy of the source.
+
+    newListHead = new NodeHS(); // "newListHead" is pointing to a dummy node.
+    NodeHS* currentNew = newListHead; // Pointer used to build the new list along the way
+
+    while(currentSource->getNext() != NULL){
+        sentinel = new NodeHS(currentSource);
+        doubleLink(currentNew,sentinel);
+        currentSource = currentSource->getNext();
+        currentNew = currentNew->getNext();
+    }
+    delete newListHead->getPrevious(); // Delete the dummy node we made in the beginning.
+}
+void list_head_insert(NodeHS*& headPtr, NodeHS*& newEntry){}
+void list_head_remove(NodeHS*& headPtr){}
+
+void list_insert(NodeHS*& previousPtr, NodeHS*& newNode){}
+
+NodeHS* list_copy(NodeHS* SourcePtr){}
+NodeHS* findNode(NodeHS* headPtr, size_t Index){}
+NodeHS* locateString(const NodeHS* headPtr){}
+NodeHS* locateHash(const NodeHS* headPtr){}
+
+void print_list(const NodeHS* headPtr, bool printInfo=false){}
+void list_remove(NodeHS* previousPtr){}
+
+
+
+
 #endif
