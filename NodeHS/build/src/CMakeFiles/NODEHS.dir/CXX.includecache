@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/csc21200/CPP_REP/NodeHS/src/NodeHS.cpp
+NodeHS.h
+/home/csc21200/CPP_REP/NodeHS/src/NodeHS.h
+
+/home/csc21200/CPP_REP/NodeHS/src/NodeHS.h
+iostream
+-
+iomanip
+-
+cassert
+-
+cstdlib
+-
+cstdio
+-
+string
+-
+NodeHS.cpp
+/home/csc21200/CPP_REP/NodeHS/src/NodeHS.cpp
+

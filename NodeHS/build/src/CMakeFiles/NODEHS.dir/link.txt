@@ -1,0 +1,2 @@
+/usr/bin/ar qc libNODEHS.a  CMakeFiles/NODEHS.dir/NodeHS.cpp.o
+/usr/bin/ranlib libNODEHS.a

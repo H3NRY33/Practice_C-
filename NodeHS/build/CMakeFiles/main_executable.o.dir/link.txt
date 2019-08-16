@@ -1,0 +1,1 @@
+/usr/bin/c++   -std=c++11  -rdynamic CMakeFiles/main_executable.o.dir/main.cpp.o  -o main_executable.o src/libNODEHS.a 
