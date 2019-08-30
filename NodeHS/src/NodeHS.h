@@ -87,25 +87,18 @@ bool isHash(string HashCheck){
     return true;
 }
 };
-// Node Modification
-void doubleLink(NodeHS*& Node1, NodeHS*& Node2); // Set nodes next to node2, set Node2 previous to node1
-void copyNode(const NodeHS* NodeSource, NodeHS*& NodeRecieve); // Copies all the contents from NodeSource and makes NodeRecieve point to it.
+
 
 // List Info
 size_t list_length(NodeHS* headPtr);
-
 NodeHS* list_tail(NodeHS* headPtr);
 
 // List Modification.
-void list_push(NodeHS* headPtr, NodeHS* newNode); 
-void list_clear(NodeHS*& headPtr);
-void list_copy(NodeHS* SourcePtr, NodeHS*& newListHead);
-void list_head_insert(NodeHS*& headPtr, NodeHS* newNode);
-void list_head_remove(NodeHS*& headPtr);
+
+void list_clear(NodeHS* headPtr);
+void list_head_remove(NodeHS* headPtr);
 
 void list_insert(NodeHS* previousPtr, NodeHS* newNode);
-size_t list_length(NodeHS* headPtr);
-
 
 NodeHS* findNode(NodeHS* headPtr, size_t Index);
 NodeHS* locateString(NodeHS* headPtr, string targetString);

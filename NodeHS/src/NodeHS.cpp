@@ -96,18 +96,6 @@ bool NodeHS::strongLink()const{
     return ((this->previous != NULL) && (this->next != NULL));
 }
 
-// Node Modification
-void doubleLink(NodeHS*& Node1, NodeHS*& Node2){
-    if((Node1->getNext() == NULL) && (Node2->isSingle())){ // Make sure that "Node1" has nothing in front of it, and that "Node2" has NO links.
-        Node1->setNext(Node2);
-        Node2->setPrevious(Node1);
-    }
-}
-void copyNode(const NodeHS* NodeSource, NodeHS*& NodeRecieve){
-    delete NodeRecieve; // Delete the node that "NodeRecieve was pointing to"
-    NodeRecieve= new NodeHS(NodeSource); // Make NodeReceive point to the new node created
-}
-
 // List Info
 size_t list_length(NodeHS* headPtr){
     if(headPtr != NULL){
@@ -125,21 +113,14 @@ size_t list_length(NodeHS* headPtr){
 NodeHS* list_tail(NodeHS* headPtr){
     if(headPtr != NULL){
         NodeHS* CurrentNode = headPtr;
-        while(CurrentNode != NULL){
+        while(CurrentNode->getNext() != NULL){
             CurrentNode = CurrentNode->getNext();
         }
         return CurrentNode;
     }
     return NULL;
 }
-
 // List manipulations.
-void list_push(NodeHS* headPtr, NodeHS* newNode){
-    NodeHS* lastNode = list_tail(headPtr);
-    if(lastNode != NULL){
-        doubleLink(lastNode,newNode);
-    }
-}
 void list_clear(NodeHS*& headPtr){
     NodeHS* lastNode = list_tail(headPtr);
     if(lastNode != NULL){
@@ -152,32 +133,6 @@ void list_clear(NodeHS*& headPtr){
         }
     }
     delete headPtr;
-}
-void list_copy(NodeHS* SourcePtr, NodeHS*& newListHead){
-    NodeHS* lastNode = list_tail(newListHead);
-    if(lastNode != NULL){ // If the new list head has a list, then clear it. We are overwriting.
-        list_clear(newListHead);
-    }
-
-    NodeHS* currentSource = SourcePtr; // Pointer used to iterate the source list.
-    NodeHS* sentinel = NULL; // Dummy node used to make a copy of the source.
-
-    newListHead = new NodeHS(); // "newListHead" is pointing to a dummy node.
-    NodeHS* currentNew = newListHead; // Pointer used to build the new list along the way
-
-    while(currentSource->getNext() != NULL){
-        sentinel = new NodeHS(currentSource);
-        doubleLink(currentNew,sentinel);
-        currentSource = currentSource->getNext();
-        currentNew = currentNew->getNext();
-    }
-    delete newListHead->getPrevious(); // Delete the dummy node we made in the beginning.
-}
-void list_head_insert(NodeHS*& headPtr, NodeHS*& newNode){
-    if(headPtr != NULL){
-        doubleLink(newNode,headPtr);
-        headPtr = newNode;
-    }
 }
 void list_head_remove(NodeHS*& headPtr){
     if(headPtr->getNext() != NULL){
@@ -256,5 +211,4 @@ void list_remove(NodeHS* previousPtr){
         futureNode->setPrevious(previousPtr);
     }
 }
-
 #endif
